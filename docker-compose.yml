@@ -34,6 +34,17 @@ services:
     command: ["npm", "run", "start"]
     networks:
       - backend
+  client:
+    depends_on:
+        - backend
+    build: ./movie-time-client
+    container_name: movie-time-client
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=backend
+    networks:
+      - backend
 
 networks:
   backend:
