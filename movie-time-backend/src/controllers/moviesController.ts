@@ -8,11 +8,13 @@ export const discover = async (): Promise<
   const movies = dbMovieToMovie(await queryMovies());
   const res: Record<string, MovieController.Movie[]> = {};
   movies.forEach((movie) => {
-    if (!res?.[movie.genre]) {
-      res[movie.genre] = [movie];
-    } else {
+    if (!res[movie.genre]) {
+      res[movie.genre] = [];
+    }
+    if (res[movie.genre].length < 10) {
       res[movie.genre].push(movie);
     }
+    res[movie.genre] = res[movie.genre];
   });
   return res;
 };
