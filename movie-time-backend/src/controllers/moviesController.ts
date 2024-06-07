@@ -1,17 +1,18 @@
-import connectionPool from '../config/database';
+import { queryMovies } from "../core/movies/repo";
+import { dbMovieToMovie } from "./mapper";
+import { MovieController } from "./types";
 
-export interface Movie {
-    title: string;
-    watched: boolean;
-}
-
-export const getAllMovies = async (): Promise<any> => {
-    const [rows] = await connectionPool.query('SELECT * FROM Movies');
-    return rows;
-};
-
-export const addMovie = async (movie: Movie): Promise<any> => {
-    const { title, watched } = movie;
-    const [result] = await connectionPool.query('INSERT INTO Movies (title, watched) VALUES (?, ?)', [title, watched]);
-    return result;
+export const discover = async (): Promise<
+  Record<string, MovieController.Movie[]>
+> => {
+  const movies = dbMovieToMovie(await queryMovies());
+  const res: Record<string, MovieController.Movie[]> = {};
+  movies.forEach((movie) => {
+    if (!res?.[movie.genre]) {
+      res[movie.genre] = [movie];
+    } else {
+      res[movie.genre].push(movie);
+    }
+  });
+  return res;
 };

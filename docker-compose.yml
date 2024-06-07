@@ -11,8 +11,7 @@ services:
     expose:
       - "3306"
     volumes:
-     - ./movie-time-backend/migrations/tables.sql:/docker-entrypoint-initdb.d/0_init.sql
-    # command: --init-file=/movie-time-backend/migrations/tables.sql
+      - movie-time-volume:/var/lib/mysql
     networks:
       - backend
 
@@ -30,6 +29,8 @@ services:
       - MYSQL_HOST=db
       - MYSQL_USER=user
       - MYSQL_PASSWORD=secret-pw
+      - MYSQL_DATABASE=movie_time
+      - TMDB_API_URL=https://api.themoviedb.org/3
     command: ["npm", "run", "start"]
     networks:
       - backend
@@ -37,3 +38,5 @@ services:
 networks:
   backend:
     driver: bridge
+volumes:
+  movie-time-volume:
