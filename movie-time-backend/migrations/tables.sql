@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS movie_time;
+
+use movie_time;
+
+CREATE TABLE IF NOT EXISTS Movies (
+    id          INT             AUTO_INCREMENT PRIMARY KEY,
+    title       VARCHAR(255)    NOT NULL,
+    watched     BOOLEAN         DEFAULT FALSE,
+    createdAt   TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
+    updatedAt   TIMESTAMP       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
