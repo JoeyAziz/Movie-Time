@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
         Discover trending movies of the week in all genres at one place!
       </span>
       <div className="overflow-auto max-w-[400px] md:max-w-[800px]">
-        <span className="text-3xl md:text-4xl honk animate whitespace-nowrap">
+        <span className="text-2xl md:text-4xl honk animate whitespace-nowrap">
           Keep track of everything you are watching. Discover what to watch
           next! Keep track of everything you are watching. Discover what to
           watch next!
