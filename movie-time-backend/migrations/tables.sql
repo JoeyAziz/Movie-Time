@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS moviedb_genres (
     name VARCHAR(25) NOT NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE INDEX uIdx_original_id (original_id),
+    UNIQUE INDEX uidx_moviedb_genres_original_id (original_id),
     PRIMARY KEY (added_id)
 );
 
@@ -25,5 +25,6 @@ CREATE TABLE IF NOT EXISTS moviedb_movies (
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (genre_original_id) REFERENCES moviedb_genres (original_id),
+    UNIQUE INDEX uidx_moviedb_movies_original_id (original_id),
     PRIMARY KEY (added_id)
 );
