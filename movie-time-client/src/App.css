@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar */
+*::-webkit-scrollbar {
+  display: none;
+}
+html {
+  background-color: rgb(5 150 105);
+  font-family: "Limelight", sans-serif;
+}
+
+.honk {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+}
+
+@layer components {
+  .animate {
+    display: flex;
+    animation: scroll 10s linear infinite alternate-reverse;
+  }
+  .animate:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translate(-50%);
+    }
+  }
+}
