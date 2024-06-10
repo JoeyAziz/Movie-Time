@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { moviesApi } from "../api";
 
-export default function useDiscover() {
+export default function useFetchMovie(movieId: string) {
   return useQuery({
-    queryKey: ["discover"],
-    queryFn: moviesApi.discover,
+    queryKey: ["movie", movieId],
+    queryFn: () => moviesApi.fetchDetails(movieId),
     refetchOnWindowFocus: false,
   });
 }
