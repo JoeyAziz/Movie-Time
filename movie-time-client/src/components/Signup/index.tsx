@@ -1,21 +1,29 @@
 import React from "react";
+import { useAuth } from "../../hooks/useAuth";
 import { useToggle } from "../../hooks/useToggle";
-import Modal from "../Modal";
 import Button from "../Button";
-import Input from "../Input";
+import UserControlledModalForm, { UserControlledFormValues } from "../UserControlledModalForm";
 
 const Signup: React.FC = () => {
   const [open, toggle] = useToggle();
+  const { singup } = useAuth();
+
+  const handleSubmit = ({ username, password }: UserControlledFormValues) => {
+    singup(username, password, () => toggle(false));
+  };
 
   return (
     <>
       <Button onClick={() => toggle()}>SIGNUP</Button>
-      <Modal title="Welcome to Move.Time!" open={open} okText="Sign up" onCancel={() => toggle(false)}>
-        <div className="flex flex-col gap-4">
-          <Input placeholder="@username" />
-          <Input type="password" placeholder="password" />
-        </div>
-      </Modal>
+      <UserControlledModalForm
+        onSubmit={handleSubmit}
+        modalProps={{
+          title: "Welcome to Move.Time!",
+          open,
+          okText: "Sign up",
+          onCancel: () => toggle(false),
+        }}
+      />
     </>
   );
 };

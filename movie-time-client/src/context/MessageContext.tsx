@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 export type MessageType = "success" | "error";
 
@@ -14,15 +14,7 @@ interface MessageContextProps {
   removeMessage: (id: number) => void;
 }
 
-const MessageContext = createContext<MessageContextProps | undefined>(undefined);
-
-export const useMessage = () => {
-  const context = useContext(MessageContext);
-  if (context === undefined) {
-    throw new Error("useMessage must be used within an MessageProvider");
-  }
-  return context;
-};
+export const MessageContext = createContext<MessageContextProps | undefined>(undefined);
 
 export const MessageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [messages, setMessages] = useState<Message[]>([]);

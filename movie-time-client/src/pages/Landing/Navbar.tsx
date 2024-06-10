@@ -1,7 +1,8 @@
 import React from "react";
-import Button from "../../components/Button";
 import Login from "../../components/Login";
-import { useAuth } from "../../context/AuthContext";
+import Signup from "../../components/Signup";
+import Logout from "../../components/Logout";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Navbar: React.FC = () => {
   const { username } = useAuth();
@@ -12,10 +13,12 @@ export const Navbar: React.FC = () => {
         [MOVIE.TIME]
       </div>
       {username ? (
-        <span>{`Hello, @${username} 👋`}</span>
+        <div className="flex items-center gap-4" key="right">
+          <span>{`Hello, @${username} 👋`}</span> | <Logout />
+        </div>
       ) : (
         <div className="flex items-center gap-4" key="right">
-          <Login />|<Button>SIGNUP</Button>
+          <Login />|<Signup />
         </div>
       )}
     </div>

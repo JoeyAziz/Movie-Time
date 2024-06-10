@@ -1,12 +1,12 @@
 import { AxiosError } from "axios";
-import { useMessage } from "../context/MessageContext";
+import { useMessage } from "./useMessage";
 
 export const useApiError = () => {
   const { addMessage } = useMessage();
 
-  const handleApiError = (err?: AxiosError) => {
-    if (err?.message) {
-      addMessage(err.message, "error");
+  const handleApiError = (err?: AxiosError<{ message: string }>) => {
+    if (err?.response?.data?.message) {
+      addMessage(err.response?.data?.message, "error");
     }
   };
   return {

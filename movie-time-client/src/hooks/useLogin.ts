@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { authApi } from "../api";
 import useApiError from "./useApiError";
-import { useMessage } from "../context/MessageContext";
+import { useMessage } from "./useMessage";
 
 export default function useLogin() {
   const { handleApiError } = useApiError();

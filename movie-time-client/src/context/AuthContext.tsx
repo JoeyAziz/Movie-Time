@@ -1,26 +1,34 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import useLogin from "../hooks/useLogin";
+import useSignup from "../hooks/useSignup";
 
 interface AuthContextProps {
   username?: string;
+  singup: (username: string, password: string, onSuccess?: () => void) => void;
   login: (username: string, password: string, onSuccess?: () => void) => void;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const savedUsername = sessionStorage.getItem("session");
+  const { mutate: signupAPI } = useSignup();
   const { mutate: loginAPI } = useLogin();
   const [username, setUsername] = useState<string | undefined>(savedUsername ? atob(savedUsername) : undefined);
+
+  const singup = (username: string, password: string, onSuccess?: () => void) => {
+    signupAPI(
+      { username, password },
+      {
+        onSuccess: () => {
+          setUsername(username);
+          sessionStorage.setItem("session", btoa(username));
+          onSuccess?.();
+        },
+      },
+    );
+  };
 
   const login = (username: string, password: string, onSuccess?: () => void) => {
     loginAPI(
@@ -41,5 +49,5 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     document.location.href = "/";
   };
 
-  return <AuthContext.Provider value={{ username, login, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ username, singup, login, logout }}>{children}</AuthContext.Provider>;
 };

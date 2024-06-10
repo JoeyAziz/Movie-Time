@@ -3,7 +3,7 @@ import Button, { ButtonProps } from "../Button";
 import { createPortal } from "react-dom";
 import { useKeypress } from "../../hooks/useKeypress";
 
-interface ModalProps {
+export interface ModalProps {
   open?: boolean;
   title?: React.ReactNode;
   onOk?: () => void;
