@@ -1,4 +1,4 @@
-import { ListAllMovies } from "../core/movies/service";
+import { ListAllMovies, addMovieToWatchlist, deleteMovieFromWatchlist } from "../core/movies/service";
 import { getMovieDetails } from "../core/tmdb/service";
 import { dbMovieToMovie, tmdbMovieDetailsToMovieDetails } from "./mapper";
 import { MovieController } from "./types";
@@ -18,8 +18,16 @@ export const discover = async (): Promise<Record<string, MovieController.Movie[]
 
 export const movieDetailsForUser = async (userId: string, movieId: string) => {};
 
-export const moveDetails = async (movieId: string) => {
+export const movieDetails = async (movieId: string) => {
   const details = await getMovieDetails(movieId);
   if (details) return tmdbMovieDetailsToMovieDetails(details);
   throw new Error("Could not get the movie details");
+};
+
+export const addToWatchlist = async (userId: string, movieId: string): Promise<void> => {
+  await addMovieToWatchlist(userId, movieId);
+};
+
+export const removeFromWatchlist = async (userId: string, movieId: string): Promise<void> => {
+  await deleteMovieFromWatchlist(userId, movieId);
 };

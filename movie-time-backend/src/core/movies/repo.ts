@@ -48,3 +48,11 @@ export const queryMovieByAddedID = async (movieId: string) => {
     return undefined;
   }
 };
+
+export const insertMovieToWatchlist = async (userId: string, movieId: string): Promise<void> => {
+  await connectionPool.query("INSERT INTO users_watch (user_id, movie_id) VALUES (?, ?)", [userId, movieId]);
+};
+
+export const removeMovieFromWatchlist = async (userId: string, movieId: string): Promise<void> => {
+  await connectionPool.query("DELETE FROM users_watch WHERE user_id = ? AND movie_id = ?", [userId, movieId]);
+};

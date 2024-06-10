@@ -39,11 +39,9 @@ CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (added_id)
 );
 
-CREATE TABLE IF NOT EXISTS users_movies (
+CREATE TABLE IF NOT EXISTS users_watch (
     user_id BIGINT NOT NULL,
     movie_id BIGINT NOT NULL,
-    watched BOOLEAN DEFAULT FALSE,
-    watch_list BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (user_id) REFERENCES users (added_id),
     FOREIGN KEY (movie_id) REFERENCES moviedb_movies (added_id),
     PRIMARY KEY (user_id, movie_id)
