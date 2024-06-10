@@ -7,4 +7,21 @@ export namespace MovieController {
     released_date: string;
     cover_url: string;
   }
+
+  export interface MovieDetails {
+    title: string;
+    posterPath: string;
+    overview: string;
+    genres: string[];
+    releaseDate: string;
+    runtime: number;
+    rating: number;
+    voteCount: number;
+    homepage: string;
+    productionCompanies: { name: string; originCountry: string }[];
+  }
+
+  export interface MovieDetailsForUser extends MovieDetails {
+    in_watch_list?: boolean;
+  }
 }

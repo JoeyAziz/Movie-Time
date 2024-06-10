@@ -15,7 +15,7 @@ export const insertMoviesFromTMDB = async (movies: TMDB.DiscoveryResponse) => {
         [movie.id, movie.genre_ids[0], movie.title, movie.overview, movie.release_date, movie.poster_path],
       );
     } catch (error) {
-      console.warn("insert_movies_from_tmdb: " + error);
+      console.error("insert_movies_from_tmdb: " + error);
     }
   }
 };

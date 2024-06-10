@@ -1,3 +1,4 @@
+import { RowDataPacket } from "mysql2";
 import connectionPool from "../../config/database";
 import { Movies } from "./types";
 
@@ -29,4 +30,21 @@ export const queryMovies = async (): Promise<Movies.dbMovie[]> => {
       moviedb_genres g ON m.genre_original_id = g.original_id",
   );
   return rows as Movies.dbMovie[];
+};
+
+export const queryMovieByAddedID = async (movieId: string) => {
+  try {
+    const [rows] = await connectionPool.query<RowDataPacket[]>("SELECT * FROM moviedb_movies WHERE added_id = ?", [
+      movieId,
+    ]);
+    console.log(rows);
+    if (rows.length === 0) {
+      return undefined;
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error("query_move_from_tmdb: " + error);
+    return undefined;
+  }
 };
