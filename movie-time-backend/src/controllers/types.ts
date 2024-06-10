@@ -21,7 +21,7 @@ export namespace MovieController {
     productionCompanies: { name: string; originCountry: string }[];
   }
 
-  export interface MovieDetailsWithWatch extends Movie {
+  export interface MovieDetailsWithWatch extends MovieDetails {
     is_watched: boolean;
   }
 }

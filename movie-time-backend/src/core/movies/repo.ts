@@ -48,43 +48,23 @@ export const queryMovieByAddedID = async (movieId: string) => {
   }
 };
 
-export const queryMoviesWithWatchStatus = async (
-  userId: string,
-  movieId: string,
-): Promise<Movies.dbMovieWithWatchStatus | undefined> => {
+export const queryUserWatchedMovie = async (userId: string, movieId: string): Promise<boolean> => {
   try {
     const [rows] = await connectionPool.query<RowDataPacket[]>(
-      "SELECT \
-      m.added_id AS movie_added_id, \
-      m.original_id AS movie_original_id, \
-      m.genre_original_id AS movie_genre_original_id, \
-      m.name AS movie_name, \
-      m.description AS movie_description, \
-      m.released_date AS movie_released_date, \
-      m.cover_url AS movie_cover_url, \
-      m.createdAt AS movie_createdAt, \
-      m.updatedAt AS movie_updatedAt, \
-      g.added_id AS genre_added_id, \
-      g.original_id AS genre_original_id, \
-      g.name AS genre_name, \
-      g.createdAt AS genre_createdAt, \
-      g.updatedAt AS genre_updatedAt, \
-      IF(uw.user_id IS NOT NULL, TRUE, FALSE) AS is_watched \
-    FROM moviedb_movies m \
-    JOIN moviedb_genres g ON m.genre_original_id = g.original_id \
-    LEFT JOIN users_watch uw ON m.added_id = uw.movie_id AND uw.user_id = ? \
-    WHERE m.added_id = ?",
+      "SELECT * \
+    FROM users_watch \
+    WHERE user_id = ? AND movie_id = ?",
       [userId, movieId],
     );
 
     if (rows.length === 0) {
-      return undefined;
+      return false;
     }
 
-    return rows[0] as Movies.dbMovieWithWatchStatus;
+    return true;
   } catch (error) {
     console.error("query_move_from_tmdb: " + error);
-    return undefined;
+    return false;
   }
 };
 

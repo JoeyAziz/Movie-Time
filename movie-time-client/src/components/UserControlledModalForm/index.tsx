@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal, { ModalProps } from "../Modal";
 import Input from "../Input";
 import { isValidPassword, isValidUsername } from "../../utils";
@@ -30,6 +30,14 @@ const UserControlledModalForm: React.FC<UserControlledFormProps> = ({ onSubmit, 
       onSubmit({ username, password });
     } else setErrors(newErrors);
   };
+
+  useEffect(() => {
+    if (!modalProps?.open) {
+      setUsername("");
+      setPassword("");
+      setErrors({});
+    }
+  }, [modalProps?.open]);
 
   return (
     <Modal onOk={handleSubmit} {...modalProps}>
