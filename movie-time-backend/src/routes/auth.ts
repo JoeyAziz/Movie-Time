@@ -19,7 +19,7 @@ router.post("/signup", async (req, res) => {
 
   try {
     const user = await signup(username, password);
-    tokenize(res, user.id.toString());
+    tokenize(res, user.added_id.toString());
 
     res.status(201).json({ message: "User created successfully" });
   } catch (error: any) {
@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const user = await login(username, password);
-    tokenize(res, user.id.toString());
+    tokenize(res, user.added_id.toString());
 
     res.status(201).json({ message: "User logged in successfully" });
   } catch (error: any) {
