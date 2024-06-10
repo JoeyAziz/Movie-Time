@@ -1,6 +1,10 @@
-import { insertMovieToWatchlist, queryMovies, removeMovieFromWatchlist } from "./repo";
+import { insertMovieToWatchlist, queryMovies, queryMoviesWithWatchStatus, removeMovieFromWatchlist } from "./repo";
 
-export const ListAllMovies = () => queryMovies();
+export const listAllMovies = () => queryMovies();
+
+export const listMoviesWithWatchStatusForUser = async (userId: string, movieId: string) => {
+  return await queryMoviesWithWatchStatus(userId, movieId);
+};
 
 export const addMovieToWatchlist = (userId: string, movieId: string) => insertMovieToWatchlist(userId, movieId);
 

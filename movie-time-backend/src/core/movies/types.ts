@@ -22,4 +22,8 @@ export namespace Movies {
     genre_createdAt: string;
     genre_updatedAt: string;
   }
+
+  export interface dbMovieWithWatchStatus extends dbMovie {
+    is_watched: boolean;
+  }
 }

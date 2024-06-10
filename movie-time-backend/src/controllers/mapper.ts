@@ -34,3 +34,11 @@ export const tmdbMovieDetailsToMovieDetails = (tmdbMovie: TMDB.MovieDetailsRespo
     })),
   };
 };
+
+export const dbMovieWithStatusToMovieDetails = (
+  dbMovie: Movies.dbMovieWithWatchStatus,
+): MovieController.MovieDetailsWithWatch => {
+  const movie = toMovie(dbMovie) as MovieController.MovieDetailsWithWatch;
+  movie.is_watched = dbMovie.is_watched;
+  return movie;
+};
