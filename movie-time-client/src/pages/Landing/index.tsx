@@ -3,11 +3,12 @@ import useDiscover from "../../hooks/useDiscover";
 import { Header } from "./Header";
 import { Navbar } from "./Navbar";
 import { GenreSections } from "./GenreSections";
+import Spinner from "../../components/Spinner";
 
 const Landing: React.FC = () => {
   const { data, isLoading } = useDiscover();
 
-  if (isLoading) return <span>LOADING!!</span>;
+  if (isLoading) return <Spinner />;
 
   return (
     <div>

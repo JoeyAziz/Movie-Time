@@ -1,18 +1,26 @@
 import React, { useCallback } from "react";
 import { Movie } from "../../models/movie";
+import { useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   data: Movie;
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+  const navigate = useNavigate();
+
   const formatName = useCallback((name: string) => {
     if (name.length > 34) return name.substring(0, 34) + "...";
     return name;
   }, []);
 
   return (
-    <div className="flex flex-col hover:scale-105 focus:scale-105 active:scale-95">
+    <div
+      onClick={() => {
+        navigate(`/${data.id}/details`);
+      }}
+      className="flex flex-col hover:scale-105 focus:scale-105 active:scale-95"
+    >
       <img
         loading="lazy"
         className="cursor-pointer rounded-t-xl snap-always snap-start min-w-[100px] w-[100px] h-[150px] md:min-w-[150px] md:w-[150px] md:h-[200px]"

@@ -1,10 +1,19 @@
 import React from "react";
 import useFetchMovie from "../../hooks/useFetchMovie";
+import { useNavigate, useParams } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 const MovieDetails: React.FC = () => {
-  const { data: movie } = useFetchMovie("12");
+  const { movieId } = useParams<{ movieId: string }>();
+  const { data: movie, isLoading, isError } = useFetchMovie(movieId ?? "");
+  const navigate = useNavigate();
 
-  if (!movie) return <></>;
+  if (isLoading) return <Spinner />;
+
+  if (isError || !movie) {
+    navigate("/");
+    return <></>;
+  }
 
   return (
     <div className="max-w-md p-4 m-4 overflow-hidden bg-white rounded shadow-lg md:max-w-lg lg:max-w-xl">
