@@ -20,7 +20,7 @@ export const toMovie = (dbMovie: Movies.dbMovie): MovieController.Movie => {
 export const tmdbMovieDetailsToMovieDetails = (tmdbMovie: TMDB.MovieDetailsResponse): MovieController.MovieDetails => {
   return {
     title: tmdbMovie.title,
-    posterPath: `https://image.tmdb.org/t/p/w200/${tmdbMovie.poster_path}`,
+    posterPath: `https://image.tmdb.org/t/p/w500/${tmdbMovie.poster_path}`,
     overview: tmdbMovie.overview,
     genres: tmdbMovie.genres.map((genre) => genre.name),
     releaseDate: tmdbMovie.release_date,
@@ -40,5 +40,6 @@ export const dbMovieWithStatusToMovieDetails = (
 ): MovieController.MovieDetailsWithWatch => {
   const movie = toMovie(dbMovie) as MovieController.MovieDetailsWithWatch;
   movie.is_watched = dbMovie.is_watched;
+  movie.cover_url = `https://image.tmdb.org/t/p/w500/${dbMovie.movie_cover_url}`;
   return movie;
 };
