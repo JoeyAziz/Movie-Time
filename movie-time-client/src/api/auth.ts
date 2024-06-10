@@ -28,3 +28,8 @@ export async function login(username: string, password: string) {
   );
   return response.data;
 }
+
+export async function logout() {
+  const response = await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
+  return response.data;
+}

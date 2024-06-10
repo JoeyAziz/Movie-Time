@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { insertUser, queryUserByUsername } from "./repo";
+import { insertUser, queryUserByUsername, updateUserToken as dbUpdateUserToken } from "./repo";
 
 export const createNewUser = async (username: string, password: string) => {
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -21,3 +21,5 @@ export const findUserByUsername = (username: string) => {
 export const validatePassword = async (password: string, hashedPassword: string) => {
   return await bcrypt.compare(password, hashedPassword);
 };
+
+export const updateUserToken = async (userId: string, token: string | null) => dbUpdateUserToken(userId, token);
