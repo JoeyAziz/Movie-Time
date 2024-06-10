@@ -3,6 +3,7 @@ import useFetchMovie from "../../hooks/useFetchMovie";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import Button from "../../components/Button";
+import MoveDetailsActions from "./MoveDetailsActions";
 
 const MovieDetails: React.FC = () => {
   const { movieId } = useParams<{ movieId: string }>();
@@ -61,16 +62,7 @@ const MovieDetails: React.FC = () => {
               </ul>
             </div>
           </div>
-
-          {movie.is_watched !== undefined && (
-            <div className="flex justify-end gap-3 ">
-              {movie.is_watched ? (
-                <Button className="font-extrabold bg-yellow-900">REMOVE FROM WATCH LIST</Button>
-              ) : (
-                <Button className="font-extrabold bg-yellow-400">ADD TO WATCH LIST</Button>
-              )}
-            </div>
-          )}
+          {movieId && <MoveDetailsActions movieId={movieId} is_watched={movie.is_watched} />}
         </div>
       </div>
     </div>
