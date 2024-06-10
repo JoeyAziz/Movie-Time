@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
         [MOVIE.TIME]
       </div>
       <div className="flex items-center gap-4" key="right">
-        <Login />|<Button>SIGN UP</Button>
+        <Login />|<Button>SIGNUP</Button>
       </div>
     </div>
   );

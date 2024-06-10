@@ -43,7 +43,7 @@ const Modal: React.FC<ModalProps> = ({
   return createPortal(
     <div
       key="container"
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none bg-slate-900 bg-opacity-45 focus:outline-none"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto font-mono outline-none bg-slate-900 bg-opacity-45 focus:outline-none"
     >
       <div className="flex flex-col gap-6 p-4 bg-white rounded min-w-96">
         <div key="header" className="text-lg">
