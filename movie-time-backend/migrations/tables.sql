@@ -28,3 +28,13 @@ CREATE TABLE IF NOT EXISTS moviedb_movies (
     UNIQUE INDEX uidx_moviedb_movies_original_id (original_id),
     PRIMARY KEY (added_id)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE INDEX uidx_users_username (username),
+    PRIMARY KEY (id)
+);

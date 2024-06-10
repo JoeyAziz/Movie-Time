@@ -4,9 +4,7 @@ import { insertGenresFromTMDB, insertMoviesFromTMDB } from "./repo";
 import { TMDB } from "./types";
 
 export const populateGenres = async () => {
-  const response: { data: TMDB.GenreResponse } = await api.get(
-    "genre/movie/list?language=en",
-  );
+  const response: { data: TMDB.GenreResponse } = await api.get("genre/movie/list?language=en");
 
   await insertGenresFromTMDB(response.data);
 };

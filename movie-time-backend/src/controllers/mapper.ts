@@ -1,9 +1,7 @@
 import { Movies } from "../core/movies/types";
 import { MovieController } from "./types";
 
-export const dbMovieToMovie = (
-  dbMovies: Movies.dbMovie[],
-): MovieController.Movie[] => {
+export const dbMovieToMovie = (dbMovies: Movies.dbMovie[]): MovieController.Movie[] => {
   return dbMovies.map(ToMovie);
 };
 

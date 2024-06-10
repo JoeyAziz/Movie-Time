@@ -27,7 +27,7 @@ services:
     volumes:
       - ./movie-time-backend:/usr/src/app
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=staging
       - MYSQL_HOST=db
       - MYSQL_USER=user
       - MYSQL_PASSWORD=secret-pw

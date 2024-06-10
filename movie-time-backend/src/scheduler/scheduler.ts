@@ -6,10 +6,7 @@ async function fetchDataAndPopulateTMDBGenres() {
     await populateGenres();
     console.log("Database has been populated with TMDB genres data.");
   } catch (error) {
-    console.error(
-      "Error fetching genres data from API or inserting into the database:",
-      error,
-    );
+    console.error("Error fetching genres data from API or inserting into the database:", error);
   }
 }
 
@@ -18,10 +15,7 @@ async function fetchDataAndPopulateDB() {
     await populateMovies();
     console.log("Database has been populated with API data.");
   } catch (error) {
-    console.error(
-      "Error fetching data from API or inserting into the database:",
-      error,
-    );
+    console.error("Error fetching data from API or inserting into the database:", error);
   }
 }
 
