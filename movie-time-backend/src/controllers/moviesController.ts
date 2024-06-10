@@ -1,10 +1,10 @@
-import { queryMovies } from "../core/movies/repo";
+import { ListAllMovies } from "../core/movies/service";
 import { getMovieDetails } from "../core/tmdb/service";
 import { dbMovieToMovie, tmdbMovieDetailsToMovieDetails } from "./mapper";
 import { MovieController } from "./types";
 
 export const discover = async (): Promise<Record<string, MovieController.Movie[]>> => {
-  const movies = dbMovieToMovie(await queryMovies());
+  const movies = dbMovieToMovie(await ListAllMovies());
   const res: Record<string, MovieController.Movie[]> = {};
   movies.forEach((movie) => {
     if (!res?.[movie.genre]) {

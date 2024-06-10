@@ -30,11 +30,21 @@ CREATE TABLE IF NOT EXISTS moviedb_movies (
 );
 
 CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT,
+    added_id BIGINT AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE INDEX uidx_users_username (username),
-    PRIMARY KEY (id)
+    PRIMARY KEY (added_id)
 );
+
+CREATE TABLE IF NOT EXISTS users_movies (
+    user_id BIGINT NOT NULL,
+    movie_id BIGINT NOT NULL,
+    watched BOOLEAN DEFAULT FALSE,
+    watch_list BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users (added_id),
+    FOREIGN KEY (movie_id) REFERENCES moviedb_movies (added_id),
+    PRIMARY KEY (user_id, movie_id)
+)
