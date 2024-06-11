@@ -19,9 +19,9 @@ Movie Time is an app that enables users to track movies in a watch list and mark
 
 1.  git clone this repo
     
-2. Ensure Docker is installed on your system.
+2. Ensure Docker is installed on your system. [https://docs.docker.com/engine/install/]
     
-3. Configure the backend .env file with your TMDB API key and TMDB read access token. [Please take a look on example.env and make a copy with the name .env]
+3. Configure the backend .env file with your TMDB API key and TMDB read access token. [Please take a look on example.env and make a copy with the name .env] [https://www.themoviedb.org/settings/api]
     
 4. In your termnial, run inside the root directory ```docker-compose up --build``` 
 - - You should find the project hosted on localhost:3000, or in the terminal, you might see another hosted link.
