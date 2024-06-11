@@ -15,13 +15,13 @@ const MoveDetailsActions: React.FC<MoveDetailsActionsProps> = ({ movieId, is_wat
 
   if (typeof is_watched === "undefined") return null;
   return (
-    <div className="flex justify-end gap-3 ">
+    <div className="flex w-full gap-3 md:w-auto md:justify-end">
       {is_watched ? (
-        <Button onClick={() => remove()} disabled={loading} className="font-extrabold bg-yellow-900">
+        <Button onClick={() => remove()} disabled={loading} className="w-full font-extrabold bg-yellow-900 md:w-fit">
           REMOVE FROM WATCH LIST
         </Button>
       ) : (
-        <Button onClick={() => add()} disabled={loading} className="font-extrabold bg-yellow-400">
+        <Button onClick={() => add()} disabled={loading} className="w-full font-extrabold bg-yellow-400 md:w-fit">
           ADD TO WATCH LIST
         </Button>
       )}

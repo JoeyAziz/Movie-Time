@@ -29,7 +29,7 @@ const MovieDetails: React.FC = () => {
           Home Page
         </Button>
       </div>
-      <div className="flex gap-3 font-sans">
+      <div className="flex flex-col gap-3 font-sans md:flex-row">
         <img className="object-cover rounded-xl" src={movie.posterPath} alt={`${movie.title} Poster`} />
         <div className="flex flex-col gap-3">
           <div className="p-4 bg-amber-400 rounded-xl opacity-70 h-fit">
